@@ -36,11 +36,11 @@ describe('<App />', () => {
     component.find('.App').simulate('click');
 
     expect(
-      onClick.mock.calls,
-    ).toHaveLength(1);
+      onClick,
+    ).toHaveBeenCalledTimes(1);
 
     expect(
-      onClick.mock.calls[0],
-    ).toEqual(expect.arrayContaining(['foo bar']));
+      onClick,
+    ).toHaveBeenCalledWith('foo bar');
   });
 });
