@@ -5,13 +5,28 @@ import './App.css';
 const someHelper = testData => testData;
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.doClick = this.doClick.bind(this);
+  }
+
+  doClick() {
+    const {
+      onClick,
+      test,
+    } = this.props;
+
+    onClick(test);
+  }
+
   render() {
     const {
       test,
     } = this.props;
 
     return (
-      <div className="App">
+      <div className="App" onClick={this.doClick}>
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
@@ -29,10 +44,12 @@ class App extends Component {
 
 App.defaultProps = {
   test: 'foo bar',
+  onClick: () => {},
 };
 
 App.propTypes = {
   test: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default App;

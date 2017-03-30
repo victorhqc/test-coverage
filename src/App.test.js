@@ -25,4 +25,22 @@ describe('<App />', () => {
       }).find('.test-prop').text()
     ).toEqual('Hello world');
   });
+
+  it('Should handle `onClick`', () => {
+    const onClick = jest.fn();
+
+    const component = wrapper({
+      onClick,
+    });
+
+    component.find('.App').simulate('click');
+
+    expect(
+      onClick.mock.calls,
+    ).toHaveLength(1);
+
+    expect(
+      onClick.mock.calls[0],
+    ).toEqual(expect.arrayContaining(['foo bar']));
+  });
 });
