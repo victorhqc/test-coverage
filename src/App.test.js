@@ -43,4 +43,10 @@ describe('<App />', () => {
       onClick,
     ).toHaveBeenCalledWith('foo bar');
   });
+
+  it('Should click element without crashing', () => {
+    const component = wrapper();
+
+    component.find('.App').simulate('click');
+  });
 });
